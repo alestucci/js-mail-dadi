@@ -19,18 +19,16 @@ const arrEmail = [
 
 const inputEmail = document.getElementById("email");
 let mailOutput = document.querySelector(".mail-output");
-console.log(mailOutput);
 let controlBtn = document.getElementById("control");
 let clearBtn = document.getElementById("clear");
 
 controlBtn.addEventListener("click", function () {
-    console.log(inputEmail.value);
-    let found = false;
+	let found = false;
 	for (let index = 0; index < arrEmail.length; index++) {
-        console.log(arrEmail[index].toLowerCase());
+		console.log(arrEmail[index].toLowerCase());
 		if (arrEmail[index].toLowerCase() == inputEmail.value.toLowerCase()) {
 			found = true;
-            console.log(found);
+			console.log(found);
 		}
 	}
 
@@ -42,11 +40,37 @@ controlBtn.addEventListener("click", function () {
 });
 
 clearBtn.addEventListener("click", function () {
-    inputEmail.value = "";
-    mailOutput.innerHTML = "";
+	inputEmail.value = "";
+	mailOutput.innerHTML = "";
 });
 
 /* DADO
 - assegnare a una variabile (utente) un numero casuale da 1 a 6
 - assegnare a una variabile (computer) un numero casuale da 1 a 6
-- se numeri uguali pareggio, se utente > computer vince utente, else vince computer (switch)*/
+- se numeri uguali pareggio, se utente > computer vince utente, else vince computer
+*/
+
+let diceBtn = document.getElementById("dice");
+let pcDice = document.querySelector(".pc-dice");
+let userDice = document.querySelector(".user-dice");
+let diceOutput = document.querySelector(".dice-output");
+let diceValuePc = 0;
+let diceValueUser = 0;
+diceBtn.addEventListener("click", function () {
+	diceValuePc = Math.floor(Math.random() * 6 + 1);
+	pcDice.innerHTML = "Il Computer ha totalizzato " + diceValuePc;
+
+	diceValueUser = Math.floor(Math.random() * 6 + 1);
+	userDice.innerHTML = "Tu hai totalizzato " + diceValueUser;
+
+	if (diceValuePc > diceValueUser) {
+		diceOutput.innerHTML = "Ha vinto il PC";
+		diceOutput.style = "color: red";
+	} else if (diceValuePc < diceValueUser) {
+		diceOutput.innerHTML = "Hai vinto";
+		diceOutput.style = "color: green";
+	} else {
+		diceOutput.innerHTML = "Pareggio!";
+		diceOutput.style = "color: orange";
+	}
+});
